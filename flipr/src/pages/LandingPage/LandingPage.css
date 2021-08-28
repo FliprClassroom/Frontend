@@ -1,0 +1,33 @@
+.LandingPageDiv{
+    /* display: flex; */
+    width: 100vw;
+    height:100vh;
+    /* justify-content: flex-end;
+    align-items: flex-end; */
+    /* overflow-y : hidden; */
+    /* overflow-x:hidden; */
+    /* overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none; */
+}
+/* .LandingPageImageDiv{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+} */
+/* .LandingPageDiv::-webkit-scrollbar {
+    display: none;
+  } */
+
+/* .LandingPageImage{ */
+    /* object-fit:; */
+    /* width: 200; */
+    /* justify-self: flex-end; */
+    /* justify-content: flex-end; */
+    /* justify-self:right; */
+/* } */
+
+.topDiv {
+    justify-content: space-around;
+}

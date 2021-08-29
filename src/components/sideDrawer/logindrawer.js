@@ -3,10 +3,17 @@ import "./drawer.css";
 import { Icon } from "@material-ui/core";
 // import IconAnimation from "../iconAnimation/iconAnimation";
 import CloseIcon from '@material-ui/icons/Close';
+import Switches from "../switch/switch";
 const LoginDrawer = ({ showDrawer, closeDrawer }) => {
   let side_drawer_state = "side_drawer";
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [isTeacher, setIsTeacher] = React.useState(false);
+
+  const handleCheck = () => {
+    setIsTeacher( !isTeacher);
+  };
+
   if (showDrawer) side_drawer_state = "side_drawer open";
 
   return (
@@ -28,24 +35,23 @@ const LoginDrawer = ({ showDrawer, closeDrawer }) => {
             onChange={(e) => setName(e.target.value)}
           />
           <label htmlFor="Name" className="label">
-            <span className="content">Name</span>
+            <span className="content">Username</span>
           </label>
         </div>
         <div className="form">
           <input
-            type="tel"
-            name="Phone"
+            type="password"
+            name="Password"
             required
             autoCapitalize={false}
-            maxLength="10"
-            minLength="10"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <label htmlFor="Phone" className="label">
             <span className="content">Phone</span>
           </label>
         </div>
+        <Switches check={isTeacher} handleChange={()=>handleCheck()}/>
         <button className="button">Login</button>
       </div>
     </div>

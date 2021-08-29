@@ -3,14 +3,19 @@ import "./drawer.css";
 import { Icon } from "@material-ui/core";
 // import IconAnimation from "../iconAnimation/iconAnimation";
 import CloseIcon from '@material-ui/icons/Close';
+import Switches from "../switch/switch";
 const SignupDrawer = ({ showDrawer, closeDrawer }) => {
   let side_drawer_state = "side_drawer";
   if (showDrawer) side_drawer_state = "side_drawer open";
 
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isTeacher, setIsTeacher] = React.useState(false);
+
+  // const handleChange = (event) => {
+  //   setIsTeacher( !isTeacher);
+  // };
 
   return (
     <div className={side_drawer_state}>
@@ -32,21 +37,6 @@ const SignupDrawer = ({ showDrawer, closeDrawer }) => {
           />
           <label htmlFor="Name" className="label">
             <span className="content">Name</span>
-          </label>
-        </div>
-        <div className="form">
-          <input
-            type="tel"
-            name="Phone"
-            required
-            autoCapitalize={false}
-            maxLength="10"
-            minLength="10"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <label htmlFor="Phone" className="label">
-            <span className="content">Phone</span>
           </label>
         </div>
         <div className="form">
@@ -75,6 +65,7 @@ const SignupDrawer = ({ showDrawer, closeDrawer }) => {
             <span className="content">Password</span>
           </label>
         </div>
+        <Switches state={isTeacher} handleChange={() => setIsTeacher(!isTeacher)}/>
         <button className="button">Sign Up</button>
       </div>
     </div>

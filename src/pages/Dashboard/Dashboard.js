@@ -7,7 +7,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import Classes from "../Classes/Classes";
-import { Link,Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import SideBar from "../../components/SideBar/SideBar";
 const Dashboard = () => {
   const [routes, setRoutes] = useState({
@@ -17,7 +17,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div class="w-screen h-screen grid grid-cols-12 grid-rows-6 gap-2 cursor-default">
+    <div class=" h-screen cursor-default">
       {/* <div class="col-span-2 row-span-6 pt-6 items-start text-secondary text-left bg-primary ">
         <span class="self-center text-2xl pl-5 opacity-90 font-bold text-left  ">
           Flipr ClassRoom
@@ -67,8 +67,8 @@ const Dashboard = () => {
         </div>
       </div> */}
       {/* <SideBar/> */}
-      <Route path="*" component={SideBar}/>
-      <div class="col-start-3 col-span-10 row-span-6">123123123</div>
+      {/* <Route path="*" component={SideBar}/> */}
+      <div>123123123</div>
     </div>
   );
 };

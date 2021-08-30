@@ -6,43 +6,90 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import { useLocation } from "react-router-dom";
 // import Classes from "../Classes/Classes";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
-    const [routes, setRoutes] = useState({
-        class: false,
-        assignment: false,
-        test: false,
-      });
-    return (
-        <div class="w-screen h-screen grid grid-cols-12 grid-rows-6 gap-2 cursor-default">
-            <div class="col-span-2 row-span-6 pt-6 items-start text-secondary text-left bg-primary ">
-        <span class="self-center text-2xl pl-5 opacity-90 font-bold text-left  ">
-          Flipr ClassRoom
-        </span>
+  const location = useLocation().pathname;
+
+  console.log(location, "hii");
+
+  const routeType = {
+    CLASS: "/classes",
+    ASSIGNMENT: "/assignments",
+    EXAM: "/exams",
+    HOME: "/home",
+  };
+  return (
+    <div class="h-screen cursor-default">
+      <div class="h-screen pt-6 items-start text-secondary text-left bg-primary ">
+        <Link to="/home">
+          <span class="self-center text-2xl pl-5 opacity-90 font-bold text-left  ">
+            Flipr ClassRoom
+          </span>
+        </Link>
         <div class="pt-6 opacity-80">
           <hr />
         </div>
         <div class="mt-8 flex flex-col">
-          <Link to="/classes" class=" w-full mb-2 mt-2 pl-5 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none">
-            {routes.class?<span class="mb-2 mt-2 pl-5 text-lg bg-secondary text-textColor scale-110">
-              <ClassIcon style={{ alignSelf: "center" }} />
-              &nbsp;&nbsp;&nbsp;Classes
-            </span>:<span onClick={()=>setRoutes({...routes,class:true})} >
-              <ClassIcon style={{ alignSelf: "center" }} />
-              &nbsp;&nbsp;&nbsp;Classes
-            </span>}
+          <Link
+            to="/classes"
+            class=" w-full mb-2 mt-2 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none"
+          >
+            {location === routeType.CLASS ? (
+              <div class="text-lg bg-secondary text-textColor scale-110">
+                <span class="pl-5">
+                  <ClassIcon style={{ alignSelf: "center" }} />
+                  &nbsp;&nbsp;&nbsp;Classes
+                </span>
+              </div>
+            ) : (
+              <span class="pl-5">
+                <ClassIcon style={{ alignSelf: "center" }} />
+                &nbsp;&nbsp;&nbsp;Classes
+              </span>
+            )}
           </Link>
 
-          <span class="mb-2 mt-2 pl-5 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none">
-            <AssignmentIcon style={{ alignSelf: "center" }} />
-            &nbsp;&nbsp;&nbsp;Assignments
-          </span>
-          <span class="mb-2 mt-2 pl-5 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none">
-            <MenuBookIcon style={{ alignSelf: "center" }} />
-            &nbsp;&nbsp;&nbsp;Exam
-          </span>
+          <Link
+            to="/assignments"
+            class=" w-full mb-2 mt-2 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none"
+          >
+            {location === routeType.ASSIGNMENT ? (
+              <div class="text-lg bg-secondary text-textColor scale-110">
+                <span class="pl-5">
+                  <AssignmentIcon style={{ alignSelf: "center" }} />
+                  &nbsp;&nbsp;&nbsp;Assignments
+                </span>
+              </div>
+            ) : (
+              <span class="pl-5">
+                <AssignmentIcon style={{ alignSelf: "center" }} />
+                &nbsp;&nbsp;&nbsp;Assignments
+              </span>
+            )}
+          </Link>
+
+          <Link
+            to="/exams"
+            class=" w-full mb-2 mt-2 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none"
+          >
+            {location === routeType.EXAM ? (
+              <div class="text-lg bg-secondary text-textColor scale-110">
+                <span class="pl-5">
+                  <MenuBookIcon style={{ alignSelf: "center" }} />
+                  &nbsp;&nbsp;&nbsp;Exam
+                </span>
+              </div>
+            ) : (
+              <span class="pl-5">
+                <MenuBookIcon style={{ alignSelf: "center" }} />
+                &nbsp;&nbsp;&nbsp;Exam
+              </span>
+            )}
+          </Link>
+
           <span class="mb-2 mt-2 pl-5 text-lg hover:bg-secondary hover:text-textColor transform ease-in-out duration-300 hover:scale-110 motion-reduce:transform-none">
             <CalendarTodayIcon style={{ alignSelf: "center" }} />
             &nbsp;&nbsp;&nbsp;Calendar
@@ -65,8 +112,8 @@ const SideBar = () => {
           </span>
         </div>
       </div>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default SideBar
+export default SideBar;

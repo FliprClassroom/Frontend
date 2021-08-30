@@ -1,7 +1,7 @@
-import React from "react";
-import ClassCard from "../../components/Class/ClassCard";
+import React from 'react'
+import ExamCard from '../../components/Exam/ExamCard';
 
-const Classes = () => {
+const Exams = () => {
   const Colors = [
     "#FFA067",
     "#1CB892",
@@ -107,7 +107,7 @@ const Classes = () => {
   ];
 
   const subs = arr.map((ele) => (
-    <ClassCard
+    <ExamCard
       id={ele.id}
       col={Colors[ele.id % 8]}
       name={ele.name}
@@ -124,4 +124,5 @@ const Classes = () => {
   );
 };
 
-export default Classes;
+export default Exams;
+

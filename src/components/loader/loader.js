@@ -1,8 +1,8 @@
 import React from 'react';
-import * as animationData from '../pages/loader.json';
+import * as animationData from '../../asset/loader.json';
 import Lottie from 'react-lottie';
 
-const LoadingContainer = () => {
+const Loader = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -16,11 +16,11 @@ const LoadingContainer = () => {
         <div>
             <Lottie
                 options={defaultOptions}
-                width={200}
-                height={200}
+                width={300}
+                height={300}
             />
         </div>
     )
 }
 
-export default LoadingContainer;
+export default Loader;

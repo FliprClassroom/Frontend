@@ -4,7 +4,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import Assignments from "../Assignments/Assignments";
 import Classes from "../Classes/Classes";
 import Dashboard from "../Dashboard/Dashboard";
-import Exams from "../Exam/Exam";
+import Exams from "../Exams/Exams";
 import LandingPage from "../LandingPage/LandingPage";
 
 const MainPage = () => {

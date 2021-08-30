@@ -8,10 +8,17 @@ import * as Easy from "../../asset/EasyToUse.json";
 import * as Student from "../../asset/StudentLandingPage2.json";
 import SignupDrawer from "../../components/sideDrawer/signupdrawer";
 import LoginDrawer from "../../components/sideDrawer/logindrawer";
+import {useSelector} from 'react-redux';
 import Backdrop from "@material-ui/core/Backdrop";
 import { makeStyles } from "@material-ui/core/styles";
 import "./LandingPage.css";
+import Loader from "../../components/loader/loader";
 const LandingPage = () => {
+
+
+  const isAuthLoading = useSelector(state => state.auth.isAuthLoading)
+
+
   const [signupDrawer, setSignupDrawer] = useState(false);
   const [showLoginDrawer, setShowLoginDrawer] = useState(false);
   const useBackdrop = makeStyles((theme) => ({
@@ -30,8 +37,11 @@ const LandingPage = () => {
   const handleToggle = () => {
     setOpen(!open);
   };
-  return (
+  return isAuthLoading ? (
+    <Loader />
+  ) : (
     <div className="LandingPageDiv">
+      {/* <Loader/> */}
       <div class="h-screen w-screen grid grid-cols-12 grid-rows-6 gap-2">
         <div class="self-center col-span-12 row-span-1 justify-between flex flex-row ...">
           <span class="self-center text-5xl font-bold text-textColor text-left m-8">
@@ -39,13 +49,19 @@ const LandingPage = () => {
           </span>
           <div class="inline self-center text-xl font-bold text-textColor m-8">
             <button
-              onClick={() => {setShowLoginDrawer(true);handleToggle();}}
+              onClick={() => {
+                setShowLoginDrawer(true);
+                handleToggle();
+              }}
               class="mr-4 font-bold"
             >
               Login
             </button>
             <button
-              onClick={() => {setSignupDrawer(true);handleToggle();}}
+              onClick={() => {
+                setSignupDrawer(true);
+                handleToggle();
+              }}
               class="p-2 text-secondary rounded bg-primary hover:bg-opacity-95 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ..."
             >
               Signup
@@ -54,15 +70,20 @@ const LandingPage = () => {
               className={classes.backdrop}
               open={open}
               onClick={handleClose}
-            >
-            </Backdrop>
+            ></Backdrop>
             <SignupDrawer
               showDrawer={signupDrawer}
-              closeDrawer={() => {setSignupDrawer(false);handleToggle();}}
+              closeDrawer={() => {
+                setSignupDrawer(false);
+                handleToggle();
+              }}
             />
             <LoginDrawer
               showDrawer={showLoginDrawer}
-              closeDrawer={() => {setShowLoginDrawer(false);handleToggle();}}
+              closeDrawer={() => {
+                setShowLoginDrawer(false);
+                handleToggle();
+              }}
             />
           </div>
         </div>

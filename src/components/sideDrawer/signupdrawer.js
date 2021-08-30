@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import "./drawer.css";
-import { Icon } from "@material-ui/core";
+import {useSelector,useDispatch} from 'react-redux'
+import {handleAuthChanges,signupUser} from '../../redux/ActionCreator'
 // import IconAnimation from "../iconAnimation/iconAnimation";
 import CloseIcon from '@material-ui/icons/Close';
 import Switches from "../switch/switch";
 const SignupDrawer = ({ showDrawer, closeDrawer }) => {
+
+  const dispatch = useDispatch();
+
+  const username = useSelector(state => state.auth.username);
+  const email = useSelector(state => state.auth.email);
+  const password = useSelector(state => state.auth.password);
+  const is_staff = useSelector(state => state.auth.is_staff); 
+
+  const handler = (prop,value) => {
+    dispatch(handleAuthChanges({prop:prop,value:value}));
+  }
+
+
+
   let side_drawer_state = "side_drawer";
   if (showDrawer) side_drawer_state = "side_drawer open";
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isTeacher, setIsTeacher] = React.useState(false);
 
-  // const handleChange = (event) => {
-  //   setIsTeacher( !isTeacher);
-  // };
+  const handleSignup = () => {
+    dispatch(signupUser({username,password,email,is_staff}))
+  }
 
   return (
     <div className={side_drawer_state}>
@@ -32,8 +43,8 @@ const SignupDrawer = ({ showDrawer, closeDrawer }) => {
             required
             autoCapitalize={false}
             autoComplete="new-password"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => handler("username", e.target.value)}
           />
           <label htmlFor="Name" className="label">
             <span className="content">Name</span>
@@ -46,7 +57,7 @@ const SignupDrawer = ({ showDrawer, closeDrawer }) => {
             required
             autoCapitalize={false}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handler("email",e.target.value)}
           />
           <label htmlFor="Email" className="label">
             <span className="content">Email</span>
@@ -59,14 +70,17 @@ const SignupDrawer = ({ showDrawer, closeDrawer }) => {
             required
             autoCapitalize={false}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => handler("password",e.target.value)}
           />
           <label htmlFor="Password" className="label">
             <span className="content">Password</span>
           </label>
         </div>
-        <Switches state={isTeacher} handleChange={() => setIsTeacher(!isTeacher)}/>
-        <button className="button">Sign Up</button>
+        <Switches
+          state={is_staff}
+          handleChange={() => handler("is_staff",!is_staff)}
+        />
+        <button className="button" onClick={() => handleSignup()}>Sign Up</button>
       </div>
     </div>
   );

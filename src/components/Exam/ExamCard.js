@@ -1,6 +1,6 @@
 import React from "react";
 
-const ClassCard = (props) => {
+const ExamCard = (props) => {
   
   return (
     <div class=" m-2 h-64 w-72 text-left border-primary border-1 text-textColor rounded-md shadow-lgPrimary cursor-pointer">
@@ -22,4 +22,4 @@ const ClassCard = (props) => {
   );
 };
 
-export default ClassCard;
+export default ExamCard;

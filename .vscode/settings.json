@@ -4,5 +4,7 @@
     "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
   },
 
-  "diffEditor.wordWrap": "on"
+  "diffEditor.wordWrap": "on",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }

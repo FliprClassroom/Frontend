@@ -1,5 +1,6 @@
 import * as ActionTypes from "../ActionTypes";
 import axios from "../../axios";
+import { Redirect } from "react-router-dom";
 
 export const handleAuthChanges = ({ prop, value }) => {
   return {
@@ -19,12 +20,64 @@ export const signupUser =
         username: username,
         email: email,
         password: password,
-        // is_staff:is_staff
+        is_staff: is_staff,
       });
       //   console.log(response, "=============>>>>");
       if (response.status === 201) {
         dispatch(handleAuthChanges({ prop: "isAuthLoading", value: false }));
-        console.log(response.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+export const loginUser =
+  ({ username, password, loc }) =>
+  async (dispatch) => {
+    dispatch(handleAuthChanges({ prop: "isAuthLoading", value: true }));
+
+    try {
+      let response = await axios.post("/login/", {
+        username: username,
+        password: password,
+      });
+
+      if (response.status === 200) {
+        dispatch(fetchUser({ token: response.data.access }));
+        dispatch(handleAuthChanges({ prop: "isAuthLoading", value: false }));
+        localStorage.setItem("login_access_token", response.data.access);
+        console.log("=========>>>");
+        // <Redirect
+        //   to={{
+        //     pathname: "/home",
+        //     state: { from: loc },
+        //   }}
+        // />;
+        loc.push("/home");
+        console.log("=========>>>");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+export const clearAuthForm = () => {
+  return {
+    type: ActionTypes.CLEAR_AUTH_FORM,
+  };
+};
+
+export const fetchUser =
+  ({ token }) =>
+  async (dispatch) => {
+    try {
+      let response = await axios.post("/getuser/", {
+        token: token,
+      });
+
+      if (response.status === 200) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        dispatch(handleAuthChanges({ prop: "user", value: response.data }));
       }
     } catch (err) {
       console.log(err);

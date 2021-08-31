@@ -8,27 +8,26 @@ import * as Easy from "../../asset/EasyToUse.json";
 import * as Student from "../../asset/StudentLandingPage2.json";
 import SignupDrawer from "../../components/sideDrawer/signupdrawer";
 import LoginDrawer from "../../components/sideDrawer/logindrawer";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 import Backdrop from "@material-ui/core/Backdrop";
 import { makeStyles } from "@material-ui/core/styles";
 import "./LandingPage.css";
 import Loader from "../../components/loader/loader";
-const LandingPage = () => {
-
-
-  const isAuthLoading = useSelector(state => state.auth.isAuthLoading)
-
+import { useHistory, useLocation } from "react-router-dom";
+const LandingPage = (props) => {
+  const isAuthLoading = useSelector((state) => state.auth.isAuthLoading);
 
   const [signupDrawer, setSignupDrawer] = useState(false);
   const [showLoginDrawer, setShowLoginDrawer] = useState(false);
   const useBackdrop = makeStyles((theme) => ({
     backdrop: {
-      zIndex:  100,
+      zIndex: 100,
       color: "#fff",
     },
   }));
   const classes = useBackdrop();
   const [open, setOpen] = React.useState(false);
+  const loc = useHistory();
   const handleClose = () => {
     setOpen(false);
     setShowLoginDrawer(false);
@@ -84,6 +83,7 @@ const LandingPage = () => {
                 setShowLoginDrawer(false);
                 handleToggle();
               }}
+              loc={loc}
             />
           </div>
         </div>

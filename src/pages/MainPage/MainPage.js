@@ -12,10 +12,13 @@ const MainPage = () => {
     <div class="max-h-screen scrollbar-hide">
       {/* <Route path="*" component={SideBar} /> */}
       {/* <Dashboard /> */}
-      <Route path="/home" component={Dashboard} />
-      <Route path="/classes" component={Classes} />
-      <Route path="/assignments" component={Assignments} />
-      <Route path="/exams" component={Exams} />
+      <Switch>
+        <Route path="/home" component={Dashboard} />
+        <Route path="/classes" component={Classes} />
+        <Route path="/assignments" component={Assignments} />
+        <Route path="/exams" component={Exams} />
+        <Route path="*" component={Dashboard} />
+      </Switch>
     </div>
   );
 };

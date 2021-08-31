@@ -1,26 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 import "./drawer.css";
-import { Icon } from "@material-ui/core";
-// import IconAnimation from "../iconAnimation/iconAnimation";
-import CloseIcon from '@material-ui/icons/Close';
-import Switches from "../switch/switch";
-const LoginDrawer = ({ showDrawer, closeDrawer }) => {
-  let side_drawer_state = "side_drawer";
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [isTeacher, setIsTeacher] = React.useState(false);
+import { useSelector, useDispatch } from "react-redux";
+import CloseIcon from "@material-ui/icons/Close";
+import {
+  handleAuthChanges,
+  clearAuthForm,
+  loginUser,
+} from "../../redux/ActionCreator";
+const LoginDrawer = ({ showDrawer, closeDrawer, loc }) => {
+  const dispatch = useDispatch();
 
-  const handleCheck = () => {
-    setIsTeacher( !isTeacher);
+  const handler = (prop, value) => {
+    dispatch(handleAuthChanges({ prop: prop, value: value }));
   };
+
+  const username = useSelector((state) => state.auth.username);
+  const password = useSelector((state) => state.auth.password);
+
+  const handleLogin = () => {
+    dispatch(loginUser({ username, password, loc }));
+  };
+
+  let side_drawer_state = "side_drawer";
+  // const [name, setName] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [isTeacher, setIsTeacher] = React.useState(false);
+
+  // const handleCheck = () => {
+  //   setIsTeacher( !isTeacher);
+  // };
 
   if (showDrawer) side_drawer_state = "side_drawer open";
 
   return (
     <div className={side_drawer_state}>
       {/* <IconAnimation className="icon_animation_bg" /> */}
-      <div class=" flex justify-end mr-20 mt-10" onClick={() => closeDrawer()}>
-        <CloseIcon  />
+      <div
+        class=" flex justify-end mr-20 mt-10"
+        onClick={() => {
+          dispatch(clearAuthForm());
+          closeDrawer();
+        }}
+      >
+        <CloseIcon />
       </div>
       <h4 className="heading offset-1 mt-3">Login</h4>
       <div className="form_group">
@@ -31,8 +53,8 @@ const LoginDrawer = ({ showDrawer, closeDrawer }) => {
             required
             autoCapitalize={false}
             autoComplete="new-password"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => handler("username", e.target.value)}
           />
           <label htmlFor="Name" className="label">
             <span className="content">Username</span>
@@ -45,14 +67,15 @@ const LoginDrawer = ({ showDrawer, closeDrawer }) => {
             required
             autoCapitalize={false}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => handler("password", e.target.value)}
           />
           <label htmlFor="Phone" className="label">
             <span className="content">Phone</span>
           </label>
         </div>
-        <Switches check={isTeacher} handleChange={()=>handleCheck()}/>
-        <button className="button">Login</button>
+        <button className="button" onClick={() => handleLogin()}>
+          Login
+        </button>
       </div>
     </div>
   );

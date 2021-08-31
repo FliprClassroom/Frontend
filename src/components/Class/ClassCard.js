@@ -1,7 +1,6 @@
 import React from "react";
 
 const ClassCard = (props) => {
-  
   return (
     <div class=" m-2 h-64 w-72 text-left border-primary border-1 text-textColor rounded-md shadow-lgPrimary cursor-pointer">
       <div
@@ -12,9 +11,16 @@ const ClassCard = (props) => {
           {props.id}&nbsp;{props.name}
         </p>
         <p class="truncate">{props.tname}</p>
+        <a href={props.meet} target="_blank" rel="noreferrer">
+          <p class="truncate">{props.meet}</p>
+        </a>
       </div>
       <div class="p-4">
-        {true ? <p class="text-xl mb-2 font-semibold">Upcoming Events :</p> : ""}
+        {true ? (
+          <p class="text-xl mb-2 font-semibold">Upcoming Events :</p>
+        ) : (
+          ""
+        )}
         <p>{props.assignment}</p>
         <p>{props.test}</p>
       </div>

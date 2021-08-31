@@ -1,6 +1,6 @@
 import * as ActionTypes from "../ActionTypes";
 import axios from "../../axios";
-import { Redirect } from "react-router-dom";
+import { handleSnackChanges, showMessage } from "./SnackbarActions";
 
 export const handleAuthChanges = ({ prop, value }) => {
   return {
@@ -24,6 +24,13 @@ export const signupUser =
       });
       //   console.log(response, "=============>>>>");
       if (response.status === 201) {
+        dispatch(handleSnackChanges({ prop: "isVisible", value: true }));
+        dispatch(
+          showMessage({
+            message: "Sign up successful! Please Login",
+            severity: "success",
+          })
+        );
         dispatch(handleAuthChanges({ prop: "isAuthLoading", value: false }));
       }
     } catch (err) {

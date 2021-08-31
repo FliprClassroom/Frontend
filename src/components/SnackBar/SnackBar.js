@@ -1,5 +1,6 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { handleSnackChanges } from "../../redux/ActionCreator";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,19 +19,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CustomizedSnackbars(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    setOpen(true);
+  const handler = (prop, value) => {
+    dispatch(handleSnackChanges({ prop: prop, value: value }));
   };
+
+  const isVisible = useSelector((state) => state.snack.isVisible);
+  const msg = useSelector((state) => state.snack.msg);
+  const severity = useSelector((state) => state.snack.severity);
+
+  const classes = useStyles();
+  // const [open, setOpen] = React.useState(true);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
 
-    setOpen(false);
+    handler("isVisible", !isVisible);
   };
 
   const { vertical, horizontal } = { vertical: "top", horizontal: "right" };
@@ -42,12 +49,12 @@ export default function CustomizedSnackbars(props) {
 
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
-        open={open}
+        open={isVisible}
         autoHideDuration={3000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity="success">
-          Sign Up Successful ! Please Login !
+        <Alert onClose={handleClose} severity={severity}>
+          {msg}
         </Alert>
       </Snackbar>
     </div>

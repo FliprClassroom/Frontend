@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, useHistory } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -13,8 +13,7 @@ import PrivateRoute from "./utils/Private.router";
 
 function App() {
   const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
-  const loc = useHistory();
-  const token = localStorage.getItem("login_access_token");
+
   return (
     <StoreProvider store={store}>
       <BrowserRouter>

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClassCard from "../../components/Class/ClassCard";
+import { useSelector, useDispatch } from "react-redux";
+import Loader from "../../components/loader/loader";
+import { fetchClasses } from "../../redux/ActionCreator";
 
 const Classes = () => {
   const Colors = [
@@ -18,6 +21,7 @@ const Classes = () => {
       name: "Computer Science",
       tname: "Computer Science",
       assignment: "assignment 1",
+      meet_link: "https://apps.google.com/intl/en/meet/",
       test: "test 1",
     },
     {
@@ -106,18 +110,39 @@ const Classes = () => {
     },
   ];
 
-  const subs = arr.map((ele) => (
+  const dispatch = useDispatch();
+
+  const classes = useSelector((state) => state.classes.classes);
+  const isClassLoading = useSelector((state) => state.classes.isClassLoading);
+  const _user = localStorage.getItem("user");
+
+  let User = JSON.parse(_user);
+
+  // console.log(User, "user");
+
+  // console.log(classes, "class");
+
+  // console.log(isClassLoading, "loading");
+
+  useEffect(() => {
+    dispatch(fetchClasses({ user: User.id }));
+  }, []);
+
+  const subs = classes?.map((ele) => (
     <ClassCard
-      id={ele.id}
+      id={ele?.id}
       col={Colors[ele.id % 8]}
-      name={ele.name}
-      tname={ele.tname}
-      assignment={ele.assignment}
-      test={ele.test}
+      name={ele?.name}
+      tname={ele?.tname}
+      meet={ele?.meet_link}
+      assignment={ele?.assignment}
+      test={ele?.test}
     />
   ));
 
-  return (
+  return isClassLoading ? (
+    <Loader />
+  ) : (
     <div class="flex flex-row flex-wrap pt-8 p-4 max-h-screen overflow-scroll scrollbar-hide">
       {subs}
     </div>

@@ -1,6 +1,8 @@
-import React from 'react'
-import ExamCard from '../../components/Exam/ExamCard';
-
+import React, { useEffect } from "react";
+import ExamCard from "../../components/Exam/ExamCard";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTests } from "../../redux/ActionCreator";
+import Loader from "../../components/loader/loader";
 const Exams = () => {
   const Colors = [
     "#FFA067",
@@ -14,110 +16,128 @@ const Exams = () => {
   ];
   const arr = [
     {
-      id: 1,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 2,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 3,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 4,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 5,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 6,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 7,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 18,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 8,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 10,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 15,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 45,
-      name: "Computer Science",
-      tname: "Computer Science",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
     {
-      id: 1125,
-      name: "Computer Scienceasdasdadsasdasasda",
-      tname: "Computer Sciencesadasdasdasdasdasdadasdasdadada",
-      assignment: "assignment 1",
-      test: "test 1",
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
+    },
+    {
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
+    },
+    {
+      name: "Exam 1",
+      subjectName: "Computer Science",
+      tName: "Shubham Sinha",
+      dueDate: "13-09-2021",
     },
   ];
 
-  const subs = arr.map((ele) => (
-    <ExamCard
-      id={ele.id}
-      col={Colors[ele.id % 8]}
-      name={ele.name}
-      tname={ele.tname}
-      assignment={ele.assignment}
-      test={ele.test}
-    />
-  ));
+  const dispatch = useDispatch();
 
-  return (
+  const exams = useSelector((state) => state.classes.exams);
+  const isClassLoading = useSelector((state) => state.classes.isClassLoading);
+  const _user = localStorage.getItem("user");
+
+  let User = JSON.parse(_user);
+
+  useEffect(() => {
+    dispatch(fetchTests({ user: User.id }));
+  }, []);
+
+  let i = 0;
+
+  const subs = exams.map((ele) => {
+    i++;
+    return (
+      <ExamCard
+        id={ele?.id}
+        col={Colors[i % 8]}
+        name={ele?.title}
+        tname={ele?.teacher_name}
+        subjectName={ele?.subject}
+        dueDate={ele?.duedate}
+      />
+    );
+  });
+
+  return isClassLoading ? (
+    <Loader />
+  ) : (
     <div class="flex flex-row flex-wrap pt-8 p-4 max-h-screen overflow-scroll scrollbar-hide">
       {subs}
     </div>
@@ -125,4 +145,3 @@ const Exams = () => {
 };
 
 export default Exams;
-

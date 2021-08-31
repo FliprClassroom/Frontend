@@ -69,8 +69,8 @@ const LoginDrawer = ({ showDrawer, closeDrawer, loc }) => {
             value={password}
             onChange={(e) => handler("password", e.target.value)}
           />
-          <label htmlFor="Phone" className="label">
-            <span className="content">Phone</span>
+          <label htmlFor="Password" className="label">
+            <span className="content">Password</span>
           </label>
         </div>
         <button className="button" onClick={() => handleLogin()}>

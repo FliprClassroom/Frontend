@@ -4,7 +4,7 @@ const initialState = {
   username: "",
   email: "",
   password: "",
-  is_staff: "",
+  is_staff: false,
   isAuthloading: false,
   errMsg: "",
   user: null,

@@ -1,0 +1,116 @@
+.upgrade_modal {
+  overflow: scroll;
+  /* border-radius: 2%; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.upgrade_modal::-webkit-scrollbar {
+  display: none;
+}
+
+.div_upgrade_heading {
+  height: min-content;
+  margin-bottom: 2%;
+  cursor: default;
+}
+.upgradeStorageHeading {
+  color: #00b3ff;
+  /* color: #3c4043; */
+}
+.upgrade_plans_div {
+  height: 90%;
+  display: flex;
+  /* padding: 5%; */
+  flex-direction: row;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.upgrade_plans_div::-webkit-scrollbar {
+  display: none;
+}
+.upgrade_plan_div {
+  width: 27%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-right: 1.5%;
+  padding-left: 1.5%;
+  /* border: 1px solid #3c4043; */
+  /* background-color: #005288; */
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px rgb(0, 195, 255); */
+  /* box-shadow: 0 0 20px rgb(235, 235, 236); */
+  box-shadow: 0 1px 10px rgb(60 64 67 / 30%);
+  height: 85%;
+  margin: 3%;
+  color: #3c4043;
+  letter-spacing: 0.02em;
+}
+/* .upgrade_plan_div:hover {
+  box-shadow: 0 1px 10px rgb(0 195 255 / 30%);
+  box-shadow: 0 1px 10px rgb(5 227 149 / 30%);
+} */
+.upgrade_plan_top {
+  height: 56.5%;
+}
+.upgrade_plan_recommendation {
+  font-size: 120%;
+}
+.upgrade_plan_storage {
+  font-size: 220%;
+  color: #3c4043;
+  /* opacity: 0.7; */
+}
+
+.upgrade_plan_button {
+  background: none;
+  outline: none;
+  border: 1px solid #dadce0;
+  width: 60%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-radius: 4px;
+  font-size: 120%;
+  transition-duration: 0.4s;
+  /* letter-spacing: 0.0107142857em; */
+  letter-spacing: 0.02em;
+  color: #005288;
+}
+.upgrade_plan_button:hover {
+  cursor: pointer;
+  background-color: #f6fafe;
+  /* color: white; */
+}
+.upgrade_plan_button:disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #3c4043;
+}
+.upgrade_plan_button:focus {
+  outline: none;
+}
+.upgrade_plan_bottom {
+  height: 36.5%;
+  text-align: left;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; */
+}
+.upgrade_plan_description {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-bottom: 5%;
+  /* justify-content: space-evenly; */
+}
+.upgrade_plan_tick {
+  margin-left: 8%;
+  margin-right: 4%;
+  color: #05e395;
+}
+.upgrade_plan_info {
+  color: #3c4043;
+}

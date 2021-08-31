@@ -60,7 +60,7 @@ export const loginUser =
         //     state: { from: loc },
         //   }}
         // />;
-        loc.push("/");
+        loc.push("/home");
         console.log("=========>>>");
       }
     } catch (err) {

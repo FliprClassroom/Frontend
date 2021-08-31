@@ -20,15 +20,15 @@ const MainPage = () => {
     if (token != null)
       dispatch(handleAuthChanges({ prop: "user", value: user }));
   }, [token]);
- useEffect(()=>{
-   if(token==null)window.location.reload();
- },[])
+//  useEffect(()=>{
+//    if(token==null)window.location.reload();
+//  },[])
   return (
     <div class="max-h-screen scrollbar-hide">
       {/* <Route path="*" component={SideBar} /> */}
       {/* <Dashboard /> */}
       <Switch>
-        <Route path="/home" component={Classes} />
+        <Route path="/home" component={Dashboard} />
         <Route path="/classes" component={Classes} />
         <Route path="/assignments" component={Assignments} />
         <Route path="/exams" component={Exams} />

@@ -20,7 +20,9 @@ const MainPage = () => {
     if (token != null)
       dispatch(handleAuthChanges({ prop: "user", value: user }));
   }, [token]);
-
+ useEffect(()=>{
+   window.location.reload();
+ },[])
   return (
     <div class="max-h-screen scrollbar-hide">
       {/* <Route path="*" component={SideBar} /> */}

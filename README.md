@@ -1,4 +1,4 @@
-Access to the website at knights-classroom.netlify.app
+Access to the website at this [link](knights-classroom.netlify.app)
 To start frontend run these code in order
 
 1. `yarn` - To install all dependencies

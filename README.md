@@ -1,5 +1,5 @@
-Access to the website at this [link](knights-classroom.netlify.app)
-To start frontend run these code in order
+Access to the website at this [link](https://knights-classroom.netlify.app).\
+To start frontend run these code in order after cloning this repository
 
 1. `yarn` - To install all dependencies
 2. `yarn start` - To run the server

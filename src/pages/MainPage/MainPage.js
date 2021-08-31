@@ -21,7 +21,7 @@ const MainPage = () => {
       dispatch(handleAuthChanges({ prop: "user", value: user }));
   }, [token]);
  useEffect(()=>{
-   window.location.reload();
+   if(token==null)window.location.reload();
  },[])
   return (
     <div class="max-h-screen scrollbar-hide">

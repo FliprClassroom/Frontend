@@ -68,7 +68,7 @@ const Dashboard = () => {
       </div> */}
       {/* <SideBar/> */}
       {/* <Route path="*" component={SideBar}/> */}
-      <div class="pt-8">Go to Classes to see All Enrolled Classes</div>
+      <div class="pt-8"><p>Go to Classes to see All Enrolled Classes</p><p>Go to Assignments to see All Assignments</p><p>Go to Exams to see All Exams</p></div>
     </div>
   );
 };

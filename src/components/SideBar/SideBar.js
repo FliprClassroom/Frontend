@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 // import Classes from "../Classes/Classes";
 import { Link } from "react-router-dom";
 import CreateNewClass from "../NewClass/CreateNewClass";
+import JoinNewClass from "../NewClass/JoinNewClass";
 
 const SideBar = () => {
   const location = useLocation().pathname;
@@ -28,7 +29,7 @@ const SideBar = () => {
       <div class="h-screen pt-6 items-start text-secondary text-left bg-primary ">
         <Link to="/home">
           <span class="self-center text-2xl pl-5 opacity-90 font-bold text-left  ">
-            Flipr ClassRoom
+            Knight's ClassRoom
           </span>
         </Link>
         <div class="pt-6 opacity-80">
@@ -126,7 +127,7 @@ const SideBar = () => {
             setOpenUpgrade={() => setOpenModal(!openModal)}
           />
         ) : (
-          <CreateNewClass
+          <JoinNewClass
             openUpgrade={openModal}
             setOpenUpgrade={() => setOpenModal(!openModal)}
           />

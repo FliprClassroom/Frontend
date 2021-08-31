@@ -26,11 +26,11 @@ const MainPage = () => {
       {/* <Route path="*" component={SideBar} /> */}
       {/* <Dashboard /> */}
       <Switch>
-        <Route path="/home" component={Dashboard} />
+        {/* <Route path="/home" component={Dashboard} /> */}
         <Route path="/classes" component={Classes} />
         <Route path="/assignments" component={Assignments} />
         <Route path="/exams" component={Exams} />
-        <Route path="*" component={Dashboard} />
+        <Route path="*" component={Classes} />
       </Switch>
     </div>
   );

@@ -44,7 +44,7 @@ const LandingPage = (props) => {
       <div class="h-screen w-screen grid grid-cols-12 grid-rows-6 gap-2">
         <div class="self-center col-span-12 row-span-1 justify-between flex flex-row ...">
           <span class="self-center text-5xl font-bold text-textColor text-left m-8">
-            Flipr ClassRoom
+            Knight's ClassRoom
           </span>
           <div class="inline self-center text-xl font-bold text-textColor m-8">
             <button
@@ -92,9 +92,9 @@ const LandingPage = (props) => {
             Where teaching and learning come together.
           </p>
           <p class="mt-3 text-opacity-75 text-base text-black ">
-            Flipr Classroom is your all-in-one place for teaching and learning.
-            Our easy-to-use and secure tool helps educators manage, measure, and
-            enrich learning experiences.
+            Knight's Classroom is your all-in-one place for teaching and
+            learning. Our easy-to-use and secure tool helps educators manage,
+            measure, and enrich learning experiences.
           </p>
         </div>
         <div class="col-span-6 flex justify-center row-span-2  ...">

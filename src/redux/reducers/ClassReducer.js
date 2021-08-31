@@ -3,8 +3,9 @@ import * as ActionTypes from "../ActionTypes";
 const initialState = {
   isClassLoading: false,
   classes: [],
-  assignments:[],
-  exams:[]
+  assignments: [],
+  exams: [],
+  allClasses: [],
 };
 
 export default (state = initialState, action) => {

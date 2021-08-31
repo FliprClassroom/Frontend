@@ -1,3 +1,9 @@
+Access to the website at knights-classroom.netlify.app
+To start frontend run these code in order
+
+1. `yarn` - To install all dependencies
+2. `yarn start` - To run the server
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
